@@ -1,10 +1,11 @@
-{ lib
-, buildPythonPackage
-, fetchFromGitHub
-, django
-, setuptools
-, pytestCheckHook
-, pytest-django
+{
+  lib,
+  buildPythonPackage,
+  fetchFromGitHub,
+  django,
+  setuptools,
+  pytestCheckHook,
+  pytest-django,
 }:
 
 buildPythonPackage rec {
@@ -40,7 +41,7 @@ buildPythonPackage rec {
   pythonImportsCheck = [ "crispy_forms" ];
 
   meta = with lib; {
-    description = "The best way to have DRY Django forms.";
+    description = "Best way to have DRY Django forms";
     homepage = "https://django-crispy-forms.readthedocs.io/en/latest/";
     license = licenses.mit;
     maintainers = with maintainers; [ ambroisie ];

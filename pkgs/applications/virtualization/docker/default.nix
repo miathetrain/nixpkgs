@@ -1,4 +1,4 @@
-{ lib, callPackage, fetchFromGitHub }:
+{ lib, callPackage }:
 
 rec {
   dockerGen = {
@@ -265,14 +265,14 @@ rec {
 
     meta = with lib; {
       homepage = "https://www.docker.com/";
-      description = "An open source project to pack, ship and run any application as a lightweight container";
+      description = "Open source project to pack, ship and run any application as a lightweight container";
       longDescription = ''
         Docker is a platform designed to help developers build, share, and run modern applications.
 
         To enable the docker daemon on NixOS, set the `virtualisation.docker.enable` option to `true`.
       '';
       license = licenses.asl20;
-      maintainers = with maintainers; [ offline vdemeester periklis ];
+      maintainers = with maintainers; [ offline vdemeester periklis teutat3s ];
       mainProgram = "docker";
     };
   });
@@ -308,15 +308,15 @@ rec {
   };
 
   docker_26 = callPackage dockerGen rec {
-    version = "26.0.0";
+    version = "26.1.4";
     cliRev = "v${version}";
-    cliHash = "sha256-jGg/AVnIzI8e+DdF0uKlSZApRxcwuOjCQpfnBaCY4fI=";
+    cliHash = "sha256-7yCR49Un1i1kB+66IKt/8lgwKNkUjtVh52DH9OY8Pw4=";
     mobyRev = "v${version}";
-    mobyHash = "sha256-cDlRVdQNzH/X2SJUYHK1QLUHlKQtSyRYCVbz3wPx1ZM=";
+    mobyHash = "sha256-0WwlpUECvmNq6DBm7U7rjzYfGKF7pxsfs9+x5uVPV0k=";
     runcRev = "v1.1.12";
     runcHash = "sha256-N77CU5XiGYIdwQNPFyluXjseTeaYuNJ//OsEUS0g/v0=";
-    containerdRev = "v1.7.13";
-    containerdHash = "sha256-y3CYDZbA2QjIn1vyq/p1F1pAVxQHi/0a6hGWZCRWzyk=";
+    containerdRev = "v1.7.15";
+    containerdHash = "sha256-qLrPLGxsUmgEscrhyl+1rJ0k7c9ibKnpMpsJPD4xDZU=";
     tiniRev = "v0.19.0";
     tiniHash = "sha256-ZDKu/8yE5G0RYFJdhgmCdN3obJNyRWv6K/Gd17zc1sI=";
   };

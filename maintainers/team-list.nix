@@ -236,7 +236,6 @@ with lib.maintainers; {
     members = [
       cole-h
       grahamc
-      hoverbear
     ];
     scope = "Group registration for packages maintained by Determinate Systems.";
     shortName = "Determinate Systems employees";
@@ -345,6 +344,16 @@ with lib.maintainers; {
     shortName = "freedesktop.org packaging";
   };
 
+  fslabs = {
+    # Verify additions to this team with at least one already existing member of the team.
+    members = [
+      greaka
+      lpostula
+    ];
+    scope = "Group registration for packages maintained by Foresight Spatial Labs.";
+    shortName = "Foresight Spatial Labs employees";
+  };
+
   gcc = {
     members = [
       synthetica
@@ -419,7 +428,6 @@ with lib.maintainers; {
       bandresen
       hlolli
       glittershark
-      babariviere
       ericdallo
       thiagokokada
     ];
@@ -680,6 +688,7 @@ with lib.maintainers; {
       dandellion
       sumnerevans
       nickcao
+      teutat3s
     ];
     scope = "Maintain the ecosystem around Matrix, a decentralized messenger.";
     shortName = "Matrix";
@@ -951,6 +960,12 @@ with lib.maintainers; {
     ];
     scope = "Maintain SageMath and the dependencies that are likely to break it.";
     shortName = "SageMath";
+  };
+
+  sdl = {
+    members = [ ];
+    scope = "Maintain SDL libraries.";
+    shortName = "SDL";
   };
 
   sphinx = {

@@ -12,13 +12,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "media-downloader";
-  version = "4.6.0";
+  version = "4.7.0";
 
   src = fetchFromGitHub {
     owner = "mhogomchungu";
     repo = "media-downloader";
     rev = finalAttrs.version;
-    hash = "sha256-sl82ZnRqFE3z+EGM+m5rAy4MMrbgkY4PZgyc94x7XUI=";
+    hash = "sha256-ykPYxRgzKZrA0KwS1FoxZOkSL+7TbLgy0yLfs7Iqpf4=";
   };
 
   nativeBuildInputs = [
@@ -40,7 +40,7 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   meta = {
-    description = "A Qt/C++ GUI front end for yt-dlp and others";
+    description = "Qt/C++ GUI front end for yt-dlp and others";
     homepage = "https://github.com/mhogomchungu/media-downloader";
     license = lib.licenses.gpl2Plus;
     maintainers = with lib.maintainers; [ zendo ];

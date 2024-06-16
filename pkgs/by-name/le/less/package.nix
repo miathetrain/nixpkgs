@@ -4,6 +4,7 @@
 , fetchpatch
 , ncurses
 , pcre2
+, withSecure ? false
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -37,11 +38,11 @@ stdenv.mkDerivation (finalAttrs: {
     # Look for 'sysless' in /etc.
     "--sysconfdir=/etc"
     "--with-regex=pcre2"
-  ];
+  ] ++ lib.optional withSecure "--with-secure";
 
   meta = {
     homepage = "https://www.greenwoodsoftware.com/less/";
-    description = "A more advanced file pager than 'more'";
+    description = "More advanced file pager than 'more'";
     changelog = "https://www.greenwoodsoftware.com/less/news.${finalAttrs.version}.html";
     license = lib.licenses.gpl3Plus;
     mainProgram = "less";

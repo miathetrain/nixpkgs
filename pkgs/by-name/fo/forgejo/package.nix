@@ -24,7 +24,7 @@ let
     pname = "forgejo-frontend";
     inherit (forgejo) src version;
 
-    npmDepsHash = "sha256-BffoEbIzTU61bw3ECEm5eDHcav4S27MB5jQKsMprkcw=";
+    npmDepsHash = "sha256-Nu9aOjJpEAuCWWnJfZXy/GayiUDiyc3hOu6Bx7GxfxA=";
 
     patches = [
       ./package-json-npm-build-frontend.patch
@@ -39,19 +39,19 @@ let
 in
 buildGoModule rec {
   pname = "forgejo";
-  version = "7.0.2";
+  version = "7.0.4";
 
   src = fetchFromGitea {
     domain = "codeberg.org";
     owner = "forgejo";
     repo = "forgejo";
     rev = "v${version}";
-    hash = "sha256-YY5dHXWMqlCIPfqsDtHZLHjEdYmrFnh4yc0hfTUESww=";
+    hash = "sha256-WtJJdqPbx5k9U+u3ZpI3q/dm3eidxdkFgc8IskaJg88=";
   };
 
-  vendorHash = "sha256-UcjaMi/4XYLdaJhi2j3UWqHqkpTbZBo6EwNXxdRIKLw=";
+  vendorHash = "sha256-TYVWou9fIVL4od2o1uOb/MRBpf2lIg/9Tem9w+ihYzU=";
 
-  subPackages = [ "." ];
+  subPackages = [ "." "contrib/environment-to-ini" ];
 
   outputs = [ "out" "data" ];
 
@@ -80,10 +80,6 @@ buildGoModule rec {
     export ldflags+=" -X main.ForgejoVersion=$(GITEA_VERSION=${version} make show-version-api)"
   '';
 
-  preBuild = ''
-    go run build/merge-forgejo-locales.go
-  '';
-
   postInstall = ''
     mkdir $data
     cp -R ./{templates,options} ${frontend}/public $data
@@ -93,10 +89,9 @@ buildGoModule rec {
       --prefix PATH : ${lib.makeBinPath [ bash git gzip openssh ]}
   '';
 
-  # $data is not available in goModules.drv and preBuild isn't needed
+  # $data is not available in goModules.drv
   overrideModAttrs = (_: {
     postPatch = null;
-    preBuild = null;
   });
 
   passthru = {
@@ -120,7 +115,7 @@ buildGoModule rec {
   };
 
   meta = {
-    description = "A self-hosted lightweight software forge";
+    description = "Self-hosted lightweight software forge";
     homepage = "https://forgejo.org";
     changelog = "https://codeberg.org/forgejo/forgejo/releases/tag/${src.rev}";
     license = lib.licenses.mit;

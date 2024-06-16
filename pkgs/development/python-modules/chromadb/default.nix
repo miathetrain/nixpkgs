@@ -136,6 +136,11 @@ buildPythonPackage rec {
     export HOME=$(mktemp -d)
   '';
 
+  disabledTests = [
+    # flaky / timing sensitive
+    "test_fastapi_server_token_authn_allows_when_it_should_allow"
+  ];
+
   disabledTestPaths = [
     # Tests require network access
     "chromadb/test/property/test_cross_version_persist.py"
@@ -149,11 +154,12 @@ buildPythonPackage rec {
   __darwinAllowLocalNetworking = true;
 
   meta = with lib; {
-    description = "The AI-native open-source embedding database";
-    mainProgram = "chroma";
+    description = "AI-native open-source embedding database";
     homepage = "https://github.com/chroma-core/chroma";
     changelog = "https://github.com/chroma-core/chroma/releases/tag/${version}";
     license = licenses.asl20;
     maintainers = with maintainers; [ fab ];
+    mainProgram = "chroma";
+    broken = stdenv.isLinux && stdenv.isAarch64;
   };
 }

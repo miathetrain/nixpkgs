@@ -16,7 +16,7 @@
 }:
 
 let
-  rev = "87ecb45eebf345a2f60bdca47e9073ec833f7737";
+  rev = "e5cf0b704274d3deae8f4a3b6a3d0664a176bc8b";
   python = python3.withPackages (ps: with ps; [
     epc
     orjson
@@ -28,13 +28,13 @@ let
 in
 melpaBuild {
   pname = "lsp-bridge";
-  version = "20240516.145";
+  version = "20240609.1553";
 
   src = fetchFromGitHub {
     owner = "manateelazycat";
     repo = "lsp-bridge";
     inherit rev;
-    hash = "sha256-s0Tvvo4NO2GJrKSfE7XNuI1OBkf2bLRvaJilVWjyyE0=";
+    hash = "sha256-96GgMJPLFoabhlvjTMWKtEpGuctjlcRuChvzDziaq8g=";
   };
 
   commit = rev;
@@ -88,6 +88,8 @@ melpaBuild {
     runHook postCheck
   '';
 
+  __darwinAllowLocalNetworking = true;
+
   passthru.updateScript = writeScript "update.sh" ''
     #!/usr/bin/env nix-shell
     #!nix-shell -i bash -p common-updater-scripts coreutils git gnused
@@ -106,7 +108,7 @@ melpaBuild {
   '';
 
   meta = with lib; {
-    description = "A blazingly fast LSP client for Emacs";
+    description = "Blazingly fast LSP client for Emacs";
     homepage = "https://github.com/manateelazycat/lsp-bridge";
     license = licenses.gpl3Only;
     maintainers = with maintainers; [ fxttr kira-bruneau ];

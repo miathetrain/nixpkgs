@@ -1,12 +1,13 @@
-{ lib
-, buildPythonPackage
-, fetchFromGitHub
-, pythonOlder
-, pytestCheckHook
-, cython
-, poetry-core
-, setuptools
-, numpy
+{
+  lib,
+  buildPythonPackage,
+  fetchFromGitHub,
+  pythonOlder,
+  pytestCheckHook,
+  cython,
+  poetry-core,
+  setuptools,
+  numpy,
 }:
 
 buildPythonPackage rec {
@@ -30,22 +31,16 @@ buildPythonPackage rec {
     setuptools
   ];
 
-  propagatedBuildInputs = [
-    numpy
-  ];
+  propagatedBuildInputs = [ numpy ];
 
-  nativeCheckInputs = [
-    pytestCheckHook
-  ];
+  nativeCheckInputs = [ pytestCheckHook ];
 
-  doCheck = false;  # tests try to import 'libjpeg.data', which errors
+  doCheck = false; # tests try to import 'libjpeg.data', which errors
 
-  pythonImportsCheck = [
-    "libjpeg"
-  ];
+  pythonImportsCheck = [ "libjpeg" ];
 
   meta = with lib; {
-    description = "A JPEG, JPEG-LS and JPEG XT plugin for pylibjpeg";
+    description = "JPEG, JPEG-LS and JPEG XT plugin for pylibjpeg";
     homepage = "https://github.com/pydicom/pylibjpeg-libjpeg";
     changelog = "https://github.com/pydicom/pylibjpeg-libjpeg/releases/tag/v${version}";
     license = licenses.gpl3Only;
